@@ -1,3 +1,5 @@
+import math as m
+
 water_avail = int(input("How many ml of water does the coffee machine have: "))
 milk_avail = int(input("How many ml of milk does the coffee machine have: "))
 bean_avail = int(input("How many grams of beans does the coffee machine have: "))
@@ -22,9 +24,14 @@ cups_allowed_m = milk_avail / milk_1c
 cups_allowed_b = bean_avail / bean_1c
 
 # find the limiting factor
-limit = min(cups_allowed_w, cups_allowed_m, cups_allowed_b)
+limit = m.floor(min(cups_allowed_w, cups_allowed_m, cups_allowed_b))
+#print(limit)
 if cups <= limit:
-    print("Yes, I can make that amount of coffee.")
+    if limit - cups != 0:
+        N = limit - cups
+        print(f"Yes, I can make that amount of coffee (and even {N} more than that)")
+    else:
+        print("Yes, I can make that amount of coffee.")
 else:
     print(f"No, I can only make {limit} cups of coffee.")
 
