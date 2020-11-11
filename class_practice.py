@@ -59,7 +59,7 @@ class Student:
 # a_student = Student(first, last, byear)
 # print(a_student.student_id)
 
-class Movie():
+class Movie:
 
     def __init__(self, title, director, year):
         self.title = title
@@ -70,3 +70,25 @@ class Movie():
 #star_wars = Movie("Star Wars", "George Lucas", 1977)
 #fight_club = Movie("Fight Club", "David Fincher", 1999)
 
+class Sphere:
+    # finish class Sphere here
+    PI = 3.1415
+
+    def __init__(self, radius):
+        self.radius = radius
+        self.volume = (4 / 3) * self.PI * (radius ** 3)
+
+class Painting:
+    museum = "Louvre"
+
+    def __init__(self, title, painter, year):
+        self.title = title
+        self.painter = painter
+        self.year = year
+
+t = str(input())
+a = str(input())
+y = str(input())
+
+stuff = Painting(t, a, y)
+print(f'"{stuff.title}" by {stuff.painter} ({stuff.year}) hangs in the {stuff.museum}.')
