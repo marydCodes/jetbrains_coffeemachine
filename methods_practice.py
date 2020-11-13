@@ -58,3 +58,64 @@ class Ship:
 
 ############################################################
 
+class Lightbulb:
+    def __init__(self):
+        self.state = "off"
+
+    def change_state(self):
+        if self.state == "off":
+            print("Turning the light on")
+            self.state = "on"
+        elif self.state == "on":
+            print("Turning the light off")
+            self.state = "off"
+
+# test_light = Lightbulb()
+# print("Start: ", test_light.state)
+# test_light.change_state()
+# print("changed once: ", test_light.state)
+# test_light.change_state()
+# print("changed twice: ", test_light.state)
+
+############################################################
+
+class PiggyBank:
+    def __init__(self, dollars, cents):
+        self.dollars = dollars
+        self.cents = cents
+
+    def add_money(self, deposit_dollars, deposit_cents):
+        self.dollars += deposit_dollars
+        # mark up deposit_cents
+        if self.cents + deposit_cents > 99:
+            self.dollars += (self.cents + deposit_cents) // 100
+            self.cents = (self.cents + deposit_cents) % 100
+        else:
+            self.cents += deposit_cents
+
+# bank = PiggyBank(1, 1)
+# print(bank.dollars)
+# print(bank.cents)
+
+# bank.add_money(500, 500)
+# print(bank.dollars, bank.cents)
+
+############################################################
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, el):
+        self.stack.append(el)
+
+    def pop(self):
+        return self.stack.pop()
+
+    def peek(self):
+        return self.stack[-1]
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+############################################################
