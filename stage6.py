@@ -1,26 +1,35 @@
 class Drink:
-    recipe = {"water": 0,"milk": 0,"beans": 0,"money": 0}
+    recipe = {"water": 0, "milk": 0, "beans": 0}
+    cost = 0
 
     def __init__(self, water, milk, beans, money):
         self.recipe["water"] = water
         self.recipe["milk"] = milk
         self.recipe["beans"] = beans
-        self.recipe["money"] = money
+        self.cost = money
 
     def buy_it(self):
-        for key in state.recipe:
-            if Machine().state[key] < state.recipe[key]:
+        for key in self.recipe:
+            if machine.resource[key] < self.recipe[key]:
                 return f"Sorry, not enough{key}!"
             print("I have enough resources, making you a coffee!")
-            # update Machine() state according to drink??
+            # update machine state according to drink??
+        for key in self.recipe:
+            machine.resource[key] -= self.recipe[key]
+        machine.resource["money"] += self.cost
+        machine.resource["cups"] -= 1
+
 
 class Machine:
-    resource = {"water": 400, "milk": 540,"beans": 120,"money": 550, "cups": 9}
+    resource = {"water": 400, "milk": 540, "beans": 120, "money": 550, "cups": 9}
     state = "off"
 
     def __init__(self):
+        espresso = Drink(250, 0, 16, 4)
+        latte = Drink(350, 75, 20, 7)
+        capp = Drink(200, 100, 12, 6)
         print("~~~ Welcome ~~~")
-    
+
     def fill(self):
         self.resource["water"] += int(input("Write how many ml of water do you want to add: "))
         self.resource["milk"] += int(input("Write how many ml of milk do you want to add: "))
@@ -42,29 +51,29 @@ class Machine:
 
     def buy(self):
         coffee = str(input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: "))
-        
+
         if coffee == "1":
-            espresso = Drink(250, 0, 16, 4)
             espresso.buy_it()
-    
+        elif coffee == "2":
+            latte.buy_it()
+        elif coffee == "3":
+            capp.buy_it()
+
     def exit(self):
         print("Goodbye")
         self.state = "off"
 
 
 machine = Machine()
-user_input = str(input("Write action (buy, fill, take, remaining, exit): "))
-# while user_input != "exit": # causes infinite loop though...
-if machine.state == "buy":
-    machine.buy()
-
-elif user_input == "fill":
-    machine.fill()
-
-elif user_input == "take":
-    machine.take()
-
-elif user_input == "remaining":
-    machine.remaining()
-    user_input
-# machine.exit()
+user_input = input("Write action (buy, fill, take, remaining, exit): ")
+while user_input != "exit": # causes infinite loop though...
+    if user_input == "buy":
+        machine.buy()
+    elif user_input == "fill":
+        machine.fill()
+    elif user_input == "take":
+        machine.take()
+    elif user_input == "remaining":
+        machine.remaining()
+    user_input = input("Write action (buy, fill, take, remaining, exit): ")
+machine.exit()
