@@ -1,12 +1,9 @@
 # current resources
 state = {"water": 400,"milk": 540,"beans": 120,"money": 550, "cups": 9}
-
 # recipe espresso
 espresso = {"water": 250,"milk": 0,"beans": 16,"money": 4}
-
 # recipe latte
 latte = {"water": 350,"milk": 75,"beans": 20,"money": 7}
-
 # recipe cappuccino
 capp = {"water": 200,"milk": 100,"beans": 12,"money": 6}
 
